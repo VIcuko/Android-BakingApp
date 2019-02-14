@@ -1,29 +1,39 @@
 package com.example.android.android_bakingapp.data;
 
-import androidx.annotation.NonNull;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
+import android.content.Context;
+
+import com.example.android.android_bakingapp.Recipe;
+
+import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import timber.log.Timber;
 
 /**
  * Created by Vicuko on 14/2/19.
  */
-public class AppDatabase extends RoomDatabase {
-    @NonNull
-    @Override
-    protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
-        return null;
+@Database(version = 1, entities = {Recipe.class}, exportSchema = false)
+//@TypeConverters(DataConverter.class)
+public abstract class AppDatabase extends RoomDatabase {
+
+    public abstract RecipesDao recipesDao();
+
+    private static final Object LOCK = new Object();
+    private static final String DATABASE_NAME = "recipes";
+    private static AppDatabase sInstance;
+
+    public static AppDatabase getInstance(Context context) {
+        if (sInstance == null) {
+            synchronized (LOCK) {
+                Timber.d("Creating new database instance");
+                sInstance = Room.databaseBuilder(context.getApplicationContext(),
+                        AppDatabase.class, AppDatabase.DATABASE_NAME)
+                        .build();
+            }
+        }
+        Timber.d("Getting the database instance");
+        return sInstance;
     }
 
-    @NonNull
-    @Override
-    protected InvalidationTracker createInvalidationTracker() {
-        return null;
-    }
 
-    @Override
-    public void clearAllTables() {
-
-    }
 }
