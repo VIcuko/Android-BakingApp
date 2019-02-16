@@ -24,7 +24,7 @@ public class Recipe {
 
     @SerializedName("name")
     @Expose
-    private String name;g
+    private String name;
 
     @Ignore
     @SerializedName("ingredients")
