@@ -2,8 +2,6 @@ package com.example.android.android_bakingapp.data;
 
 import android.content.Context;
 
-import com.example.android.android_bakingapp.Recipe;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;

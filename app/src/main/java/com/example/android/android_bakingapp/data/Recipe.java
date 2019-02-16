@@ -1,9 +1,7 @@
 package com.example.android.android_bakingapp.data;
 
-import android.os.Parcel;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -16,45 +14,32 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "recipe")
 public class Recipe {
 
+    final static String ID = "id";
+    final static String NAME = "name";
+    final static String INGREDIENTS = "ingredients";
+    final static String STEPS = "steps";
+    final static String SERVINGS = "servings";
+    final static String IMAGE = "image";
+
     @NonNull
     @PrimaryKey
-    @SerializedName("id")
-    @Expose
-    private long id;
-
-    @SerializedName("name")
-    @Expose
+    private int id;
     private String name;
-
-    @Ignore
-    @SerializedName("ingredients")
-    @Expose
-    private List<Ingredient> ingredients;
-
-    @Ignore
-    @SerializedName("steps")
-    @Expose
-    private List<Step> steps;
-
-    @SerializedName("servings")
-    @Expose
-    private long servings;
-
-    @SerializedName("image")
-    @Expose
-    private String image;
-
+    private List<LinkedHashMap> ingredients;
+    private List<LinkedHashMap> steps;
+    private int servings;
+    private byte[] image;
     public Recipe() {
     }
 
     @Ignore
-    protected Recipe(Parcel in) {
-        id = in.readLong();
-        name = in.readString();
-        ingredients = in.createTypedArrayList(Ingredient.CREATOR);
-        steps = in.createTypedArrayList(Step.CREATOR);
-        servings = in.readLong();
-        image = in.readString();
+    protected Recipe(LinkedHashMap hashMap) {
+        id = (int) hashMap.get(ID);
+        name = (String) hashMap.get(NAME);
+        ingredients = (List<LinkedHashMap>) hashMap.get(INGREDIENTS);
+        steps = (List<LinkedHashMap>) hashMap.get(STEPS);
+        servings = (int) hashMap.get(SERVINGS);
+        image = (byte[]) hashMap.get(IMAGE);
     }
 
 
