@@ -1,27 +1,36 @@
 package com.example.android.android_bakingapp.data;
 
+import java.util.List;
+
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 import androidx.room.Update;
 
 /**
  * Created by Vicuko on 14/2/19.
  */
+@Dao
 public interface RecipesDao {
 
-    @Query("SELECT * FROM movies")
-    LiveData<List<MovieEntry>> loadAllTasks();
+    @Query("SELECT * FROM recipe ORDER BY name ASC")
+    LiveData<List<Recipe>> loadAllRecipes();
 
-    @Query("SELECT * FROM movies WHERE id = :id")
-    LiveData<MovieEntry> loadMovieById(int id);
+    @Query("SELECT * FROM recipe WHERE id = :id")
+    LiveData<Recipe> loadRecipeById(int id);
 
     @Insert
-    void insertMovie(MovieEntry movieEntry);
+    void insertRecipe(Recipe recipe);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateMovie(MovieEntry movieEntry);
+    void updateRecipe(Recipe recipe);
 
     @Delete
-    void deleteMovie(MovieEntry movieEntry);
+    void deleteRecipe(Recipe recipe);
+
+    @Query("DELETE FROM recipe")
+    void deleteAllRecipesg();
 }

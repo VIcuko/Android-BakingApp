@@ -54,6 +54,6 @@ public class DataConverter {
     @TypeConverter
     public static Bitmap fromByteArrayToBitmap (byte[] imageInByte){
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageInByte, 0, imageInByte.length);
-        return bitmap;s
+        return bitmap;
     }
 }
