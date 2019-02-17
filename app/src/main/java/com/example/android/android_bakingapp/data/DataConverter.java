@@ -1,8 +1,12 @@
 package com.example.android.android_bakingapp.data;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -37,5 +41,19 @@ public class DataConverter {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return json;
+    }
+
+    @TypeConverter
+    public static byte[] fromBitmapToByteArray (Bitmap bitmap){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] posterInByte = baos.toByteArray();
+        return posterInByte;
+    }
+
+    @TypeConverter
+    public static Bitmap fromByteArrayToBitmap (byte[] imageInByte){
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageInByte, 0, imageInByte.length);
+        return bitmap;s
     }
 }

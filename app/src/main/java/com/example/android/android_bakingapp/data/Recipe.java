@@ -42,5 +42,45 @@ public class Recipe {
         image = (byte[]) hashMap.get(IMAGE);
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<LinkedHashMap> getIngredients() {
+        return ingredients;
+    }
+    public void setIngredients(List<LinkedHashMap> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<LinkedHashMap> getSteps() {
+        return steps;
+    }
+    public void setSteps(List<LinkedHashMap> steps) {
+        this.steps = steps;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
