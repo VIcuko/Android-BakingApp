@@ -17,10 +17,10 @@ import androidx.room.Update;
 public interface RecipeDao {
 
     @Query("SELECT * FROM recipe ORDER BY name ASC")
-    LiveData<List<Recipe>> loadAllRecipes();
+    LiveData<List<Recipe>> getAllRecipes();
 
     @Query("SELECT * FROM recipe WHERE id = :id")
-    LiveData<Recipe> loadRecipeById(int id);
+    LiveData<Recipe> getRecipeById(int id);
 
     @Insert
     void insertRecipe(Recipe recipe);

@@ -1,7 +1,51 @@
 package com.example.android.android_bakingapp.data;
 
+import android.app.Application;
+import android.os.AsyncTask;
+
+import com.example.android.android_bakingapp.data.db.AppDatabase;
+import com.example.android.android_bakingapp.data.db.Recipe;
+import com.example.android.android_bakingapp.data.db.RecipeDao;
+
+import java.util.List;
+
+import androidx.lifecycle.LiveData;
+
 /**
  * Created by Vicuko on 17/2/19.
  */
 public class RecipeRepository {
+    private RecipeDao mRecipeDao;
+    private LiveData<List<Recipe>> mAllRecipes;
+
+    public RecipeRepository(Application application) {
+        AppDatabase db = AppDatabase.getInstance(application);
+        mRecipeDao = db.recipeDao();
+        mAllRecipes = mRecipeDao.getAllRecipes();
+    }
+
+    LiveData<List<Recipe>> getAllRecipes() {
+        return mAllRecipes;
+    }
+
+    public void insert(Recipe recipe) {
+        new insertAsyncTask(mRecipeDao).execute(recipe);
+    }
+
+    private static class insertAsyncTask extends AsyncTask<Recipe, Void, Void> {
+
+        private RecipeDao mAsyncTaskDao;
+
+        insertAsyncTask(RecipeDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        //        TODO: Potential issue with the parameters received "Recipe... params"
+        @Override
+        protected Void doInBackground(final Recipe... params) {
+            mAsyncTaskDao.insertRecipe(params[0]);
+            return null;
+        }
+    }
 }
+
