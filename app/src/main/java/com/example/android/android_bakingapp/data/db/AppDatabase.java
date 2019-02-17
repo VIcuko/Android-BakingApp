@@ -1,17 +1,18 @@
-package com.example.android.android_bakingapp.data;
+package com.example.android.android_bakingapp.data.db;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import timber.log.Timber;
 
 /**
  * Created by Vicuko on 14/2/19.
  */
 @Database(version = 1, entities = {Recipe.class}, exportSchema = false)
-//@TypeConverters(DataConverter.class)
+@TypeConverters(DataConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract RecipeDao recipesDao();

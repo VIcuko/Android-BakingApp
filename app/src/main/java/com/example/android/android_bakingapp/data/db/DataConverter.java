@@ -1,4 +1,4 @@
-package com.example.android.android_bakingapp.data;
+package com.example.android.android_bakingapp.data.db;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
