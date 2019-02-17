@@ -14,7 +14,7 @@ import timber.log.Timber;
 //@TypeConverters(DataConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract RecipesDao recipesDao();
+    public abstract RecipeDao recipesDao();
 
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "recipes";

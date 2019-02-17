@@ -14,7 +14,7 @@ import androidx.room.Update;
  * Created by Vicuko on 14/2/19.
  */
 @Dao
-public interface RecipesDao {
+public interface RecipeDao {
 
     @Query("SELECT * FROM recipe ORDER BY name ASC")
     LiveData<List<Recipe>> loadAllRecipes();
