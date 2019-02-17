@@ -29,6 +29,7 @@ public class Recipe {
     private List<LinkedHashMap> steps;
     private int servings;
     private byte[] image;
+
     public Recipe() {
     }
 
