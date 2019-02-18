@@ -22,7 +22,7 @@ public interface RecipeDao {
     @Query("SELECT * FROM recipe WHERE id = :id")
     LiveData<Recipe> getRecipeById(int id);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertRecipe(Recipe recipe);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

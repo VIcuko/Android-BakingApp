@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -28,7 +29,9 @@ public class Recipe {
     private List<LinkedHashMap> ingredients;
     private List<LinkedHashMap> steps;
     private int servings;
-    private byte[] image;
+    private String image;
+    @Nullable
+    private byte[] additionalImage;
 
     public Recipe() {
     }
@@ -40,7 +43,8 @@ public class Recipe {
         ingredients = (List<LinkedHashMap>) hashMap.get(INGREDIENTS);
         steps = (List<LinkedHashMap>) hashMap.get(STEPS);
         servings = (int) hashMap.get(SERVINGS);
-        image = (byte[]) hashMap.get(IMAGE);
+        image = (String) hashMap.get(IMAGE);
+        additionalImage = (byte[]) hashMap.get(IMAGE);
     }
 
     public int getId() {
@@ -78,10 +82,17 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
-    public void setImage(byte[] image) {
+    public void setImage(String image){
         this.image = image;
+    }
+
+    public byte[] getAdditionalImage() {
+        return additionalImage;
+    }
+    public void setImage(byte[] image) {
+        this.additionalImage = additionalImage;
     }
 }
