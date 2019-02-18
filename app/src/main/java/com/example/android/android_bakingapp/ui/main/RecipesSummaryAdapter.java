@@ -70,7 +70,7 @@ public class RecipesSummaryAdapter extends RecyclerView.Adapter<RecipesSummaryAd
         }
     }
 
-    public void setRecipesData(List<Recipe> recipes) {
+    public void setRecipes(List<Recipe> recipes) {
         mRecipes = recipes;
         notifyDataSetChanged();
     }

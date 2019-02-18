@@ -3,18 +3,23 @@ package com.example.android.android_bakingapp.ui.main;
 import android.os.Bundle;
 
 import com.example.android.android_bakingapp.R;
+import com.example.android.android_bakingapp.data.RecipeRepository;
+import com.example.android.android_bakingapp.data.db.Recipe;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static android.widget.GridLayout.VERTICAL;
 
 public class RecipesSummary extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mRecipesSummaryAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private List<Recipe> mRecipes;
+    private RecipeRepository mRecipeRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,8 @@ public class RecipesSummary extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mRecipesSummaryAdapter = new RecipesSummaryAdapter(this);
+//        TODO: Añadir "this" como parametro al adaptador cuando implemente el onclick en el adaptador
+        mRecipesSummaryAdapter = new RecipesSummaryAdapter();
         mRecyclerView.setAdapter(mRecipesSummaryAdapter);
     }
 }

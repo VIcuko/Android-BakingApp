@@ -31,13 +31,13 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public static ArrayList<String> fromStringtoArray(String value) {
-        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+    public static ArrayList<LinkedHashMap> fromStringtoArray(String value) {
+        Type listType = new TypeToken<ArrayList<LinkedHashMap>>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public static String fromArrayListToString(ArrayList<String> list) {
+    public static String fromArrayListToString(ArrayList<LinkedHashMap> list) {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return json;

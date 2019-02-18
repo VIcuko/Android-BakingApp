@@ -1,9 +1,8 @@
 package com.example.android.android_bakingapp.data.db;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -22,12 +21,11 @@ public class Recipe {
     final static String SERVINGS = "servings";
     final static String IMAGE = "image";
 
-    @NonNull
     @PrimaryKey
     private int id;
     private String name;
-    private List<LinkedHashMap> ingredients;
-    private List<LinkedHashMap> steps;
+    private ArrayList<LinkedHashMap> ingredients;
+    private ArrayList<LinkedHashMap> steps;
     private int servings;
     private String image;
     @Nullable
@@ -40,8 +38,8 @@ public class Recipe {
     protected Recipe(LinkedHashMap hashMap) {
         id = (int) hashMap.get(ID);
         name = (String) hashMap.get(NAME);
-        ingredients = (List<LinkedHashMap>) hashMap.get(INGREDIENTS);
-        steps = (List<LinkedHashMap>) hashMap.get(STEPS);
+        ingredients = (ArrayList<LinkedHashMap>) hashMap.get(INGREDIENTS);
+        steps = (ArrayList<LinkedHashMap>) hashMap.get(STEPS);
         servings = (int) hashMap.get(SERVINGS);
         image = (String) hashMap.get(IMAGE);
         additionalImage = (byte[]) hashMap.get(IMAGE);
@@ -61,17 +59,17 @@ public class Recipe {
         this.name = name;
     }
 
-    public List<LinkedHashMap> getIngredients() {
+    public ArrayList<LinkedHashMap> getIngredients() {
         return ingredients;
     }
-    public void setIngredients(List<LinkedHashMap> ingredients) {
+    public void setIngredients(ArrayList<LinkedHashMap> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public List<LinkedHashMap> getSteps() {
+    public ArrayList<LinkedHashMap> getSteps() {
         return steps;
     }
-    public void setSteps(List<LinkedHashMap> steps) {
+    public void setSteps(ArrayList<LinkedHashMap> steps) {
         this.steps = steps;
     }
 
@@ -92,7 +90,7 @@ public class Recipe {
     public byte[] getAdditionalImage() {
         return additionalImage;
     }
-    public void setImage(byte[] image) {
+    public void setAdditionalImage(byte[] image) {
         this.additionalImage = additionalImage;
     }
 }
