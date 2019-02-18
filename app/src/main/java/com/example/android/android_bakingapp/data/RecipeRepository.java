@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import com.example.android.android_bakingapp.data.db.AppDatabase;
 import com.example.android.android_bakingapp.data.db.Recipe;
 import com.example.android.android_bakingapp.data.db.RecipeDao;
-import com.example.android.android_bakingapp.data.network.ApiClient;
 
 import java.util.List;
 
@@ -29,19 +28,20 @@ public class RecipeRepository {
         return mAllRecipes;
     }
 
-    public void requestRecipesOnlineUpdate(RecipeRepository recipeRepository){
-        ApiClient apiClient = new ApiClient();
-        apiClient.connectAndGetApiData(recipeRepository);
-    }
-
-    public void updateRecipes(List<Recipe> onlineRecipes){
-        if (!onlineRecipes.isEmpty()) {
-            for (Recipe recipe: onlineRecipes){
-                insert(recipe);
-            }
-            mAllRecipes = mRecipeDao.getAllRecipes();
-        }
-    }
+//    TODO: Revisar si se utiliza este código y sino borrarlo
+//    public void requestRecipesOnlineUpdate(RecipeRepository recipeRepository){
+//        ApiClient apiClient = new ApiClient();
+//        apiClient.connectAndGetApiData();
+//    }
+//
+//    public void updateRecipes(List<Recipe> onlineRecipes){
+//        if (!onlineRecipes.isEmpty()) {
+//            for (Recipe recipe: onlineRecipes){
+//                insert(recipe);
+//            }
+//            mAllRecipes = mRecipeDao.getAllRecipes();
+//        }
+//    }
 
     public void insert(Recipe recipe) {
         new insertAsyncTask(mRecipeDao).execute(recipe);
