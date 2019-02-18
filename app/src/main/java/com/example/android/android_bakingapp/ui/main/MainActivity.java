@@ -1,6 +1,8 @@
-package com.example.android.android_bakingapp;
+package com.example.android.android_bakingapp.ui.main;
 
 import android.os.Bundle;
+
+import com.example.android.android_bakingapp.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
