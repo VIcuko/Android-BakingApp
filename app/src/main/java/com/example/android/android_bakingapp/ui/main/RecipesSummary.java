@@ -21,12 +21,15 @@ public class RecipesSummary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_summary);
 
+//        TODO: Añadir parte para la carga de datos normal nada más abrir la actividad
+
 //        TODO: Añadir la parte para refresh layout
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.main_content_recyclerView);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new GridLayoutManager(this, 2, VERTICAL, false);
+        mLayoutManager = new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecipesSummaryAdapter = new RecipesSummaryAdapter(this);
