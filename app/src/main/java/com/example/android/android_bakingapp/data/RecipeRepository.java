@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.example.android.android_bakingapp.data.db.AppDatabase;
 import com.example.android.android_bakingapp.data.db.Recipe;
 import com.example.android.android_bakingapp.data.db.RecipeDao;
+import com.example.android.android_bakingapp.data.network.ApiClient;
 
 import java.util.List;
 
@@ -28,7 +29,19 @@ public class RecipeRepository {
         return mAllRecipes;
     }
 
-//    TODO: Method to retrieve web content in case of update in interface
+    public void requestRecipesOnlineUpdate(RecipeRepository recipeRepository){
+        ApiClient apiClient = new ApiClient();
+        apiClient.connectAndGetApiData(recipeRepository);
+    }
+
+    public void updateRecipes(List<Recipe> onlineRecipes){
+        if (!onlineRecipes.isEmpty()) {
+            for (Recipe recipe: onlineRecipes){
+                insert(recipe);
+            }
+            mAllRecipes = mRecipeDao.getAllRecipes();
+        }
+    }
 
     public void insert(Recipe recipe) {
         new insertAsyncTask(mRecipeDao).execute(recipe);
@@ -41,8 +54,6 @@ public class RecipeRepository {
         insertAsyncTask(RecipeDao dao) {
             mAsyncTaskDao = dao;
         }
-
-        //        TODO: Potential issue with the parameters received "Recipe... params"
         @Override
         protected Void doInBackground(final Recipe... params) {
             mAsyncTaskDao.insertRecipe(params[0]);

@@ -1,5 +1,6 @@
 package com.example.android.android_bakingapp.data.network;
 
+import com.example.android.android_bakingapp.data.RecipeRepository;
 import com.example.android.android_bakingapp.data.db.Recipe;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ApiClient {
 
     private static Retrofit retrofit = null;
 
-    public void connectAndGetApiData() {
+    public void connectAndGetApiData(final RecipeRepository recipeRepository) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -29,11 +30,12 @@ public class ApiClient {
                     .build();
         }
         RecipeService recipeService = retrofit.create(RecipeService.class);
-        Call<List<Recipe>> call = recipeService.getAllRecipes();
-        call.enqueue(new Callback<List<Recipe>>() {
+        Call<List<Recipe>> recipes = recipeService.getAllRecipes();
+        recipes.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 List<Recipe> recipes = response.body();
+                recipeRepository.updateRecipes(recipes);
             }
 
             @Override
