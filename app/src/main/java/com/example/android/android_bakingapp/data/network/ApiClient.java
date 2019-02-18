@@ -5,11 +5,8 @@ import com.example.android.android_bakingapp.data.db.Recipe;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import timber.log.Timber;
 
 /**
  * Created by Vicuko on 18/2/19.
@@ -21,8 +18,7 @@ public class ApiClient {
 
     private static Retrofit retrofit = null;
 
-    public List<Recipe> connectAndGetApiData() {
-        final List<Recipe>[] mRecipes = new List[]{null};
+    public Call<List<Recipe>> getRecipeApiService() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -31,19 +27,6 @@ public class ApiClient {
         }
         RecipeService recipeService = retrofit.create(RecipeService.class);
         Call<List<Recipe>> recipes = recipeService.getAllRecipes();
-
-        recipes.enqueue(new Callback<List<Recipe>>() {
-            @Override
-            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                List<Recipe> recipes = response.body();
-                mRecipes[0] = recipes;
-            }
-
-            @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Timber.d(t.toString());
-            }
-        });
-        return mRecipes[0];
+        return recipes;
     }
 }

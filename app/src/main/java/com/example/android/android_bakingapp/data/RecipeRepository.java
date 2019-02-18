@@ -31,7 +31,7 @@ public class RecipeRepository {
 //    TODO: Revisar si se utiliza este código y sino borrarlo
 //    public void requestRecipesOnlineUpdate(RecipeRepository recipeRepository){
 //        ApiClient apiClient = new ApiClient();
-//        apiClient.connectAndGetApiData();
+//        apiClient.getRecipeApiService();
 //    }
 //
 //    public void updateRecipes(List<Recipe> onlineRecipes){
