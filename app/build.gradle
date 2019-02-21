@@ -65,6 +65,8 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'androidx.test:core:1.1.0'
